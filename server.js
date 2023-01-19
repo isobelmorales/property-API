@@ -5,3 +5,21 @@ const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const path = require('path')
+
+//// DATABASE CONNECTION ////
+
+// setup inputs
+const DATABASE_URL = process.env.DATABASE_URL
+const CONFIG = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}
+
+// establish connection
+mongoose.connect(DATABASE_URL, CONFIG)
+
+// events for when connection opens/disconnects/errors
+mongoose.connection
+    .on('open', () => console.log('Connected to Mongoose'))
+    .on('close', () => console.log('Disconnected from Mongoose'))
+    .on('error', (err) => console.log('An error occurred: \n', err))

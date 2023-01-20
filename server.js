@@ -94,7 +94,7 @@ app.put('/properties/:id', (req, res) => {
     const updatedProperty = req.body
     Property.findByIdAndUpdate(id, updatedProperty, { new: true })
         .then(property => {
-            console.log('the newly updated fruit', fruit)
+            console.log('the newly updated property', property)
             res.sendStatus(204)
         })
         .catch(err => console.log(err))
@@ -124,3 +124,5 @@ app.get('properties/:id', (req, res) => {
 
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`Now listening on port ${PORT}`))
+
+//// END ////

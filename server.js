@@ -88,6 +88,18 @@ app.post('/properties', (req, res) => {
         .catch(err => console.log(err))
 })
 
+//~ PUT ROUTE ~//
+app.put('/properties/:id', (req, res) => {
+    const id = req.params.id
+    const updatedProperty = req.body
+    Property.findByIdAndUpdate(id, updatedProperty, { new: true })
+        .then(property => {
+            console.log('the newly updated fruit', fruit)
+            res.sendStatus(204)
+        })
+        .catch(err => console.log(err))
+})
+
 //// SERVER LISTENER ////
 
 const PORT = process.env.PORT

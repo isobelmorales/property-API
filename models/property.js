@@ -15,7 +15,7 @@ const propertySchema = new Schema({
     address: {
         type: String,
         required: true
-    }
+    },
     size: Number,
     available: Boolean
 })

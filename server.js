@@ -68,6 +68,16 @@ app.get('/properties/seed', (req, res) => {
     })
 })
 
+//~ INDEX ROUTE ~//
+app.get('/properties', (req, res) => {
+    // find all the properties
+    Property.find({})
+        // send json if successful
+        .then(properties => { res.json({ properties: properties })})
+        // catch errors if they occur
+        .catch(err => console.log('The following error occured: \n', err))
+})
+
 //// SERVER LISTENER ////
 
 const PORT = process.env.PORT

@@ -44,3 +44,8 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send('Your server is running...better catch it.')
 })
+
+//// SERVER LISTENER ////
+
+const PORT = process.env.PORT
+app.listen(PORT, () => console.log(`Now listening on port ${PORT}`))

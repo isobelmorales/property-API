@@ -6,6 +6,10 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const path = require('path')
 
+//// IMPORT MODEL ////
+
+const Property = require('./models/property')
+
 //// DATABASE CONNECTION ////
 
 // setup inputs

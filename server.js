@@ -31,3 +31,10 @@ mongoose.connection
 //// EXPRESS APP OBJECT ////
 
 const app = express()
+
+//// MIDDLEWARE ////
+
+app.use(morgan('tiny'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static('public'))
+app.use(express.json())

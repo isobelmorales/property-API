@@ -16,7 +16,7 @@ const propertySchema = new Schema({
         type: String,
         required: true
     },
-    size: Number,
+    floors: Number,
     available: Boolean
 })
 

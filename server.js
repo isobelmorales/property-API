@@ -78,6 +78,16 @@ app.get('/properties', (req, res) => {
         .catch(err => console.log('The following error occured: \n', err))
 })
 
+//~ CREATE ROUTE ~//
+app.post('/properties', (req, res) => {
+    const newProperty = req.body
+    Property.create(newProperty)
+        .then(property => {
+            res.status(201).json({ property: property.toObject() })
+        })
+        .catch(err => console.log(err))
+})
+
 //// SERVER LISTENER ////
 
 const PORT = process.env.PORT

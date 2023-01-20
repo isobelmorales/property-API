@@ -100,6 +100,16 @@ app.put('/properties/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
+//~ DELETE ROUTE ~//
+app.delete('/properties/:id', (req, res) => {
+    const id = req.params.id
+    Property.findByIdAndRemove(id)
+        .then(() => {
+            res.sendStatus(204)
+        })
+        .catch(err => console.log(err))
+})
+
 //// SERVER LISTENER ////
 
 const PORT = process.env.PORT

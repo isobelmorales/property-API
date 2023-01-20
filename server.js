@@ -23,3 +23,7 @@ mongoose.connection
     .on('open', () => console.log('Connected to Mongoose'))
     .on('close', () => console.log('Disconnected from Mongoose'))
     .on('error', (err) => console.log('An error occurred: \n', err))
+
+//// EXPRESS APP OBJECT ////
+
+const app = express()

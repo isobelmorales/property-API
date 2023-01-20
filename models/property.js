@@ -8,14 +8,8 @@ const { Schema, model } = mongoose
 
 // property schema
 const propertySchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
+    name: String,
+    address: String,
     floors: Number,
     available: Boolean
 })

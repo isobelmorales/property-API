@@ -41,54 +41,50 @@ app.use(express.json())
 
 //// ROUTES ////
 
-//~ INITIAL ROUTE ~//
+// initial route
 app.get('/', (req, res) => {
     res.send('Your server is running...better catch it.')
 })
 
-//~ SEED ROUTE ~//
+// seed route
 app.get('/properties/seed', (req, res) => {
-    // array of starter properties
     const startProperties = [
         { name: 'Empire State Building', address: '20 W 34th St, New York, NY 10001', floors: 102, available: false },
         { name: 'One World Trade Center', address: '285 Fulton St, New York, NY 10007', floors: 104, available: false },
         { name: 'Chrysler Building', address: '405 Lexington Ave, New York, NY 10174', floors: 77, available: true }
     ]
 
-    // delete all properties
     Property.deleteMany({})
         .then(() => {
-            // seed starter properties
             Property.create(startProperties)
                 .then((data) => {
-                    // send created properties as response to confirm creation
                     res.json(data)
                 })
                 .catch(err => console.log('The following error occured: \n', err))
     })
 })
 
-//~ INDEX ROUTE ~//
+// index route
 app.get('/properties', (req, res) => {
-    // find all the properties
     Property.find({})
-        // send json if successful
         .then(properties => { res.json({ properties: properties })})
-        // catch errors if they occur
         .catch(err => console.log('The following error occured: \n', err))
 })
 
-//~ CREATE ROUTE ~//
+// create route
 app.post('/properties', (req, res) => {
     const newProperty = req.body
     Property.create(newProperty)
         .then(property => {
             res.status(201).json({ property: property.toObject() })
         })
-        .catch(err => console.log(err))
+        .catch((err) => {
+            console.log(err)
+            res.json({ err })
+        })
 })
 
-//~ PUT ROUTE ~//
+// update route
 app.put('/properties/:id', (req, res) => {
     const id = req.params.id
     const updatedProperty = req.body
@@ -100,7 +96,7 @@ app.put('/properties/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-//~ DELETE ROUTE ~//
+// delete route
 app.delete('/properties/:id', (req, res) => {
     const id = req.params.id
     Property.findByIdAndRemove(id)
@@ -110,8 +106,8 @@ app.delete('/properties/:id', (req, res) => {
         .catch(err => console.log(err))
 })
 
-//~ SHOW ROUTE ~//
-app.get('properties/:id', (req, res) => {
+// show route
+app.get('/properties/:id', (req, res) => {
     const id = req.params.id
     Property.findById(id)
         .then(property => {

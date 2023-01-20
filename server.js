@@ -38,3 +38,9 @@ app.use(morgan('tiny'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use(express.json())
+
+//// ROUTES ////
+
+app.get('/', (req, res) => {
+    res.send('Your server is running...better catch it.')
+})
